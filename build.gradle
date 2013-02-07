@@ -1,0 +1,36 @@
+apply plugin: 'war'
+apply plugin: 'java'
+apply plugin: 'groovy'
+apply plugin: 'maven'
+
+defaultTasks 'clean', 'build'
+
+group = 'hudson-monitor'
+version = 'REL_103'
+
+configurations {
+	deployerJars
+}
+
+uploadArchives {
+	// intended for remote uploads from IP 252
+    repositories.mavenDeployer {
+		uniqueVersion = false
+        configuration = configurations.deployerJars
+        repository(url: "ftp://acme.com") {
+            authentication(userName: "jenkins", password: System.getProperty('ftp.pw'))
+        }
+    }
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.7.10'
+	testCompile group: 'junit', name: 'junit', version: '3.8.1'
+	deployerJars "org.apache.maven.wagon:wagon-ftp:1.0-beta-2"
+}
+
+
