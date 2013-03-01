@@ -6,7 +6,7 @@ apply plugin: 'maven'
 defaultTasks 'clean', 'build'
 
 group = 'hudson-monitor'
-version = 'REL_103'
+version = 'REL_xxx'
 
 configurations {
 	deployerJars
