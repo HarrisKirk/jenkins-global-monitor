@@ -10,8 +10,10 @@ BUGSs
 
 NEW 
 - Configurable refresh rates
-- left-to-right status
-- 
+- left-to-right status of selected Jenkins server and job 
+-- Visual aspect is a pipeline
+
+
 
 
 
