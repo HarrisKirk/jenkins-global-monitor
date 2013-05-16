@@ -12,7 +12,7 @@ NEW
 - Configurable refresh rates
 - left-to-right status of selected Jenkins server and job 
 -- Visual aspect is a pipeline
-
+- Allow a URL to produce a list of Jenkins Sites without actually hitting each site.
 
 
 
