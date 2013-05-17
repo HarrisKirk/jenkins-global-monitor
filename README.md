@@ -1,21 +1,23 @@
 jenkins-global-monitor
 ======================
 
-Single Page Summary of a Group of Jenkins Servers
+Shows a color-coded status of a list of Jenkins servers.  Intended for a wall monitor.    
+It is a war file intended to be dropped into a any web container.  Configuration of
+Jenkins servers to monitor is a groovy source file compiled on startup.   Currently,
+the web page refreshes every 2 mins.
 
-BUGSs
-- Handle 500 errors or long timeouts from a Jenkins server
--- Should display as (NEW COLOR) any Jenkins server that times out
-- Allow newly created jobs with no build history to be handled properly
+RED: The server has a failed job
+GREEN: No failed jobs
+YELLOW: A job has been aborted or not yet run
+GREY: The server cannot be reached.
 
-NEW 
-- Configurable refresh rates
-- left-to-right status of selected Jenkins server and job 
--- Visual aspect is a pipeline
-- Allow a URL to produce a list of Jenkins Sites without actually hitting each site.
+To build war:
+gradle build
 
+To deploy:
+Copy war into Tomcat/webapps folder
 
+After deployment of the war, modify DynamicConfiguration.groovy with your Jenkins
+servers.   An example file is provided.
 
-
-
-
+ 
