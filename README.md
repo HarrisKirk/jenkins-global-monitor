@@ -12,12 +12,15 @@ YELLOW: A job has been aborted or not yet run
 GREY: The server cannot be reached.
 
 To build war:
-gradle build
+gradle
 
 To deploy:
-Copy war into Tomcat/webapps folder
+Copy jenkins-global-monitor.war into Tomcat/webapps folder
 
 After deployment of the war, modify DynamicConfiguration.groovy with your Jenkins
 servers.   An example file is provided.
+
+To access the monitoring page: http://[host:port]/jenkins-global-monitor/HudsonView.groovy
+Example: http://192.168.1.107:9090/jenkins-global-monitor/HudsonView.groovy
 
  

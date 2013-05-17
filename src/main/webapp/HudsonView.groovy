@@ -78,7 +78,7 @@ html.html {
 
                   } // tbody 
                 } // table
-                font (size:'3') { left 'jenkins-monitor ' + MonitorUtil.parseCVS( '$Name:  $') }
+                font (size:'3') { left 'jenkins-global-monitor ' + MonitorUtil.parseCVS( '$Name:  $') }
                 br {} 
-                font (size:'2') { right 'Compiled with groovyc; Built by Maven 3; Powered by Tomcat and the Java 5 runtime' }        } // body
+                font (size:'2') { right 'Compiled with groovyc; Built by Gradle; Powered by Tomcat and the Java 6 runtime' }        } // body
 }
