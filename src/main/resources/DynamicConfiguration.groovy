@@ -1,3 +1,6 @@
+/*
+ * Configuration class.   Configures the application at startup time.
+ */
 public class DynamicConfiguration implements DynamicConfigurationInterface {
 	public def getInstanceList() {
 		[
@@ -22,5 +25,8 @@ public class DynamicConfiguration implements DynamicConfigurationInterface {
 		]
 	}
 	
+	public def getRefreshIntervalSecs() {
+		return 120
+	}
 }
 
