@@ -21,6 +21,9 @@ public class DynamicConfiguration implements DynamicConfigurationInterface {
 		new JenkinsInstanceSpecification( '63', "http://192.168.1.63:8080" ),
 		]
 	}
+	public def getRefreshIntervalSecs() {
+		return 20
+	}
 	
 }
 

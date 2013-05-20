@@ -2,6 +2,8 @@ abstract class HudsonBaseModel  {
 
 	String displayName = "Shaw Systems Hudson Server Farm"
 
+	static DynamicConfigurationInterface globalConfig
+	
 	List serverList // Constructed server objects with received XML
 	List ipAddressList
 	
@@ -25,11 +27,16 @@ abstract class HudsonBaseModel  {
 	}
 	
 	static DynamicConfigurationInterface getDynamicConfiguration() {
-		def inputStream = DynamicConfigurationInterface.class.getResourceAsStream("/DynamicConfiguration.groovy")
-		String groovySource = inputStream.getText()
-		GroovyClassLoader gcl = new GroovyClassLoader();
-		Class clazz = gcl.parseClass(groovySource);
-		DynamicConfigurationInterface globalConfig = clazz.newInstance();
+		if ( globalConfig == null ) { 
+			println ''
+			println 'Loading configuration from /DynamicConfiguration.groovy...'
+			println ''
+			def inputStream = DynamicConfigurationInterface.class.getResourceAsStream("/DynamicConfiguration.groovy")
+			String groovySource = inputStream.getText()
+			GroovyClassLoader gcl = new GroovyClassLoader();
+			Class clazz = gcl.parseClass(groovySource);
+			globalConfig = clazz.newInstance();
+		}
 		return globalConfig
 	}
 	 

@@ -1,16 +1,12 @@
 class HudsonTest extends GroovyTestCase {
 
-/* ----------------------------- TODO list
-[ ] BUG: Allow support of servers with no active jobs (ie, the last() method failure
-[ ] FEATURE: Configurable Auto-Refresh interval
-*/    
-
   	public final JenkinsInstanceSpecification dummySpec = new JenkinsInstanceSpecification ("0.0.0.0","http://0.0.0.0:8080")
 
 	void testDynamicConfig() {
 		DynamicConfigurationInterface globalConfig =  HudsonBaseModel.getDynamicConfiguration()
 		assertEquals ( 18, globalConfig.getInstanceList().size()  )
 		assertEquals ( '114', globalConfig.getInstanceList()[0].ip )
+		assertTrue ( globalConfig.getRefreshIntervalSecs() >10 )
 	}
 
 	void testBasicModelAtrributes() {
