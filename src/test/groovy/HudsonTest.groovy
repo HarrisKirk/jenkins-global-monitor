@@ -7,6 +7,7 @@ class HudsonTest extends GroovyTestCase {
 		assertEquals ( 18, globalConfig.getInstanceList().size()  )
 		assertEquals ( '114', globalConfig.getInstanceList()[0].ip )
 		assertTrue ( globalConfig.getRefreshIntervalSecs() >10 )
+		assertTrue ( globalConfig.getPipelineJobs().size() >1 )
 	}
 
 	void testBasicModelAtrributes() {
@@ -19,6 +20,11 @@ class HudsonTest extends GroovyTestCase {
 			
 	}
 
+	void testJobStatus() {
+		def xml = TestConstants.XML_JOB_STATUS
+		
+		
+	}
 	
 	void doTestBasicModelAtrributes( HudsonBaseModel hm ) {
 		// Useful for writing unit tests temporarily against

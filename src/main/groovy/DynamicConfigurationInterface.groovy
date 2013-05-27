@@ -5,4 +5,5 @@
 interface DynamicConfigurationInterface {
 	public def getInstanceList()
 	public def getRefreshIntervalSecs()
+	public def getPipelineJobs() 
 }

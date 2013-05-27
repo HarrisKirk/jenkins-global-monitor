@@ -56,4 +56,35 @@ static final String XML_2_BUILDING_BASE =
 </description><job><name>generate-license</name><url>http://192.168.1.252:8080/jenkins/job/generate-license/</url><color>blue</color></job><job><name>spectrum-apply-tag</name><url>http://192.168.1.252:8080/jenkins/job/spectrum-apply-tag/</url><color>blue</color></job><job><name>spectrum-installer</name><url>http://192.168.1.252:8080/jenkins/job/spectrum-installer/</url><color>blue</color></job><job><name>spectrum-installer-521</name><url>http://192.168.1.252:8080/jenkins/job/spectrum-installer-521/</url><color>blue</color></job><job><name>spectrum-installer-HEAD-AUTO</name><url>http://192.168.1.252:8080/jenkins/job/spectrum-installer-HEAD-AUTO/</url><color>blue</color></job><job><name>verify-drive-mappings</name><url>http://192.168.1.252:8080/jenkins/job/verify-drive-mappings/</url><color>blue</color></job><job><name>zxA</name><url>http://192.168.1.252:8080/jenkins/job/zxA/</url><color>blue_anime</color></job><job><name>zxB</name><url>http://192.168.1.252:8080/jenkins/job/zxB/</url><color>blue_anime</color></job><name>All</name><url>http://192.168.1.252:8080/jenkins/view/All/</url></allView>
 """
 
+static final String XML_JOB_STATUS =
+"""
+<freeStyleBuild>
+<action>
+<cause>
+<shortDescription>Started by user Harris Kirk</shortDescription>
+<userId>hkirk</userId>
+<userName>Harris Kirk</userName>
+</cause>
+</action>
+<action/>
+<action/>
+<building>false</building>
+<duration>5142209</duration>
+<estimatedDuration>5104209</estimatedDuration>
+<fullDisplayName>spectrum-installer-SNAPSHOT #658</fullDisplayName>
+<id>2013-05-27_07-45-15</id>
+<keepLog>false</keepLog>
+<number>658</number>
+<result>SUCCESS</result>
+<timestamp>1369655115579</timestamp>
+<url>
+http://192.168.1.252:8080/jenkins/view/All/job/spectrum-installer-SNAPSHOT/658/
+</url>
+<builtOn/>
+<changeSet>
+<kind>cvs</kind>
+</changeSet>
+</freeStyleBuild>
+"""
+
 }	
