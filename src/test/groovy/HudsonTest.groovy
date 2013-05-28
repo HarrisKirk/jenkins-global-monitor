@@ -21,9 +21,9 @@ class HudsonTest extends GroovyTestCase {
 	}
 
 	void testJobStatus() {
-		def xml = TestConstants.XML_JOB_STATUS
-		
-		
+		def xml = JobTestConstants.XML_JOB_STATUS
+		JenkinsJobStatus jjs = new JenkinsJobStatus( xml )
+		assertTrue ( jjs.isBuilding == false)
 	}
 	
 	void doTestBasicModelAtrributes( HudsonBaseModel hm ) {
