@@ -4,7 +4,7 @@ jenkins-global-monitor
 Shows a color-coded status of a list of Jenkins servers.  Intended for a wall monitor.    
 It is a war file intended to be dropped into a any web container.  Configuration of
 Jenkins servers to monitor is a groovy source file compiled on startup.   Currently,
-the web page refreshes every 2 mins.
+the web page refresh rate is configurable.
 
 RED: The server has a failed job
 GREEN: No failed jobs
