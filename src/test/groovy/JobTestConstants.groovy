@@ -1,5 +1,7 @@
 class JobTestConstants {
 
+// http://192.168.1.166:8080/jenkins/job/[[jobname]]/lastBuild/api/xml
+		
 static final String XML_JOB_STATUS =
 	"""
 	<freeStyleBuild>
