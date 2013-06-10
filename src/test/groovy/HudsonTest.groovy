@@ -7,7 +7,7 @@ class HudsonTest extends GroovyTestCase {
 		assertEquals ( 18, globalConfig.getInstanceList().size()  )
 		assertEquals ( '114', globalConfig.getInstanceList()[0].ip )
 		assertTrue ( globalConfig.getRefreshIntervalSecs() >10 )
-		assertTrue ( globalConfig.getPipelineJobs().size() >1 )
+		assertTrue ( globalConfig.getPipelineJobURLs().size() >1 )
 	}
 
 	void testBasicModelAtrributes() {
@@ -26,6 +26,14 @@ class HudsonTest extends GroovyTestCase {
 		assertTrue ( jjs.isBuilding == false)
 		assertTrue ( jjs.buildResult.equals('SUCCESS'))
 		assertTrue ( jjs.buildDate.toString().equals('Mon May 27 07:45:15 EDT 2013'))
+	}
+	
+	void testPipelineJobsOfModel() {
+		HudsonBaseModel hm = new HudsonMockModel()
+		assertTrue hm.pipelineJobs.size() == 3
+		hm.pipelineJobs.each {
+			assertTrue( it.timeStamp > 0 )
+		}
 	}
 	
 	void doTestBasicModelAtrributes( HudsonBaseModel hm ) {

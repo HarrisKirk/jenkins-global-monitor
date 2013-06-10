@@ -25,9 +25,10 @@ public class DynamicConfiguration implements DynamicConfigurationInterface {
 		return 20
 	}
 	
-	public def getPipelineJobs() {
+	public def getPipelineJobURLs() {
 		// List of Jenkins Server + job for pipeline display
 		return [
+			'http://192.168.1.252:8080/jenkins/job/spectrum-installer-SNAPSHOT',
 			'http://192.168.1.142:8080/jenkins/job/LATEST-WEBLOGIC',
 			'http://192.168.1.166:8080/jenkins/job/LATEST-WEBLOGIC',
 		]
