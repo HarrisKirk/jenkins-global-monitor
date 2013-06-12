@@ -21,7 +21,12 @@ After deployment of the war, modify DynamicConfiguration.groovy with your Jenkin
 servers.   An example file is provided.
 
 To access the monitoring page: http://[host:port]/jenkins-global-monitor/HudsonView.groovy
-Example 1: http://192.168.1.107:9090/jenkins-global-monitor
-Example 2: http://192.168.1.107:9090/jenkins-global-monitor/ShowConfig.groovy   (just list the servers being monitored)
+
+// Default Page
+Example: http://192.168.1.107:9090/jenkins-global-monitor
+Example: http://192.168.1.107:9090/jenkins-global-monitor/HudsonView.groovy
+
+// Show only the Servers without polling each one (useful if many are slow to respond)
+Example: http://192.168.1.107:9090/jenkins-global-monitor/HudsonView.groovy?jenkins_disabled=true
 
  
