@@ -1,16 +1,29 @@
 class JenkinsJobStatus {
- 
+
+	String jobUrl
+	String jobName
+	String jenkinsHost
+	boolean isJenkinsJobFound 
 	boolean isBuilding
 	String buildResult
 	long timeStamp
 
 	Date buildDate	
 	
-	JenkinsJobStatus( String xml ) {
-		this.isBuilding = extractIsBuilding( xml )
-		this.buildResult = extractBuildResult( xml )
-		this.timeStamp = extractTimeStamp( xml )
-		this.buildDate = new Date( this.timeStamp )
+	JenkinsJobStatus( String jobUrl, String xml ) {
+		this.jobUrl = jobUrl
+		int jobNameStart = jobUrl.lastIndexOf('/') + 1
+		this.jobName = jobUrl.substring( jobNameStart ) 
+		this.jenkinsHost = new URL( jobUrl ).getHost() 
+		if ( xml ) {
+			this.isJenkinsJobFound = true
+			this.isBuilding = extractIsBuilding( xml )
+			this.buildResult = extractBuildResult( xml )
+			this.timeStamp = extractTimeStamp( xml )
+			this.buildDate = new Date( this.timeStamp )
+		} else {
+			this.isJenkinsJobFound = false
+		}
 	}
 	
 	boolean extractIsBuilding( def xml ) {

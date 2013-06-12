@@ -26,6 +26,16 @@ class HudsonTest extends GroovyTestCase {
 		}
 	}
 	
+	void testJenkinsJobStatus() {
+		def xml = JobTestConstants.XML_JOB_STATUS
+		JenkinsJobStatus jjs = new JenkinsJobStatus( "http://192.168.1.142:8080/jenkins/job/XYZ" , xml )
+		assertTrue ( jjs.jobName == 'XYZ')
+		assertTrue ( jjs.jenkinsHost == '192.168.1.142')
+		assertTrue ( jjs.isBuilding == false)
+		assertTrue ( jjs.buildResult.equals('SUCCESS'))
+		assertTrue ( jjs.buildDate.toString().equals('Mon May 27 07:45:15 EDT 2013'))
+	}
+	
 	void testBasicModelAtrributes() {
 		[
 			new HudsonMockModel(),   
@@ -36,13 +46,6 @@ class HudsonTest extends GroovyTestCase {
 			
 	}
 
-	void testJobStatus() {
-		def xml = JobTestConstants.XML_JOB_STATUS
-		JenkinsJobStatus jjs = new JenkinsJobStatus( xml )
-		assertTrue ( jjs.isBuilding == false)
-		assertTrue ( jjs.buildResult.equals('SUCCESS'))
-		assertTrue ( jjs.buildDate.toString().equals('Mon May 27 07:45:15 EDT 2013'))
-	}
 
 	
 	void doTestBasicModelAtrributes( HudsonBaseModel hm ) {

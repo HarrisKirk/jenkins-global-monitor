@@ -7,9 +7,9 @@ static final String XML_JOB_STATUS =
 	<freeStyleBuild>
 	<action>
 		<cause>
-			<shortDescription>Started by user Harris Kirk</shortDescription>
-			<userId>hkirk</userId>
-			<userName>Harris Kirk</userName>
+			<shortDescription>Started by user Fred Flintstone</shortDescription>
+			<userId>fflintstone</userId>
+			<userName>Fred Flintstone</userName>
 		</cause>
 	</action>
 	<action/>

@@ -22,12 +22,16 @@ abstract class HudsonBaseModel  {
 	def createPipelineModel() {
 		def model = [:]
 		this.pipelineSpecs.each { key, value ->
-			// TODO: Handle the 'not found' condition
 			List jobUrl = value
 			jobUrl.each {
-				String urlString = it + "/lastBuild/api/xml" 
-				def xml = new URL( urlString ).text
-				model.put ( key, new JenkinsJobStatus( xml ))
+				String urlString = it + "/lastBuild/api/xml"
+				def xml
+				try { 
+					xml = new URL( urlString ).text
+				} catch (Exception e) {
+					xml = null
+				}
+				model.put ( key, new JenkinsJobStatus( urlString, xml ))
 			}
 		}
 		return model
