@@ -1,6 +1,6 @@
 abstract class HudsonBaseModel  {
 
-	String displayName = "Shaw Systems Hudson Server Farm"
+	String displayName = "Shaw Systems Jenkins Server Farm"
 
 	static DynamicConfigurationInterface globalConfig
 	
@@ -8,12 +8,18 @@ abstract class HudsonBaseModel  {
 	List ipAddressList
 	Map pipelineSpecs
 	Map pipelineModel
+	boolean isLiveQueryEnabled // if true, gather XML Api results.   If false, assume unreachable and merely display URL on page
 	
 	HudsonBaseModel() {
+		HudsonBaseModel( true )
+	}
+	
+	HudsonBaseModel( boolean isLiveQueryEnabled ) {
 		serverList = new ArrayList()
 		populateModel()
 		this.pipelineSpecs = globalConfig.getPipelineSpecs()
 		this.pipelineModel = createPipelineModel()
+		this.isLiveQueryEnabled = isLiveQueryEnabled
 	}
 
 	abstract void populateModel()

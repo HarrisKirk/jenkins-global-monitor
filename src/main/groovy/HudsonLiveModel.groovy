@@ -2,6 +2,10 @@ class HudsonLiveModel extends HudsonBaseModel {
 
 	String displayName = "Shaw Systems Jenkins Server Farm "
 
+	HudsonLiveModel() {
+		super( true )
+	}
+	
 
 	void populateModel() {
 		DynamicConfigurationInterface globalConfig =  HudsonBaseModel.getDynamicConfiguration()

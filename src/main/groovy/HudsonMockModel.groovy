@@ -4,6 +4,10 @@ class HudsonMockModel extends HudsonBaseModel {
 
 	// TODO: Build out this mock server to allow easy simulation of test conditions
 
+	HudsonMockModel() {
+		super( true )
+	}
+	
 	void populateModel() {
 		this.ipAddressList = 
 		[ 
