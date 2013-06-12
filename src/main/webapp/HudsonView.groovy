@@ -1,7 +1,8 @@
 import java.text.SimpleDateFormat
 
-HudsonBaseModel hbm = new HudsonLiveModel()
-def htmlHelper = new RefreshHtmlHelper().getRefreshHtml(request.getParameter("auto_refresh"))
+boolean isLiveJenkinsEnabled = new HtmlHelper().getTrueIfExplicitlySet(request.getParameter("jenkins_disabled")) ? false : true
+HudsonBaseModel hbm = new HudsonLiveModel( isLiveJenkinsEnabled )
+def htmlHelper = new HtmlHelper().getRefreshHtml(request.getParameter("auto_refresh"))
 
 html.html {
         head {

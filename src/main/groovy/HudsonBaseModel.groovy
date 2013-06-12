@@ -15,11 +15,11 @@ abstract class HudsonBaseModel  {
 	}
 	
 	HudsonBaseModel( boolean isLiveQueryEnabled ) {
+		this.isLiveQueryEnabled = isLiveQueryEnabled
 		serverList = new ArrayList()
 		populateModel()
 		this.pipelineSpecs = globalConfig.getPipelineSpecs()
 		this.pipelineModel = createPipelineModel()
-		this.isLiveQueryEnabled = isLiveQueryEnabled
 	}
 
 	abstract void populateModel()
@@ -33,7 +33,7 @@ abstract class HudsonBaseModel  {
 				String urlString = it + "/lastBuild/api/xml"
 				def xml
 				try { 
-					xml = new URL( urlString ).text
+					xml = this.isLiveQueryEnabled ? new URL( urlString ).text : ""
 				} catch (Exception e) {
 					xml = null
 				}

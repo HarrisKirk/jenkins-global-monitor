@@ -8,6 +8,11 @@ class HudsonMockModel extends HudsonBaseModel {
 		super( true )
 	}
 	
+	HudsonMockModel( boolean isLiveQueryEnabled ) {
+		super( isLiveQueryEnabled )
+	}
+	
+	
 	void populateModel() {
 		this.ipAddressList = 
 		[ 

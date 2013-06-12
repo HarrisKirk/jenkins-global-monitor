@@ -69,13 +69,13 @@ class HudsonTest extends GroovyTestCase {
 		
 		def testCases = [
 			// the conditions for refresh enabled
-			(new RefreshHtmlHelper().getRefreshHtml( "true" )) : new RefreshEnabledHtml(),  
+			(new HtmlHelper().getRefreshHtml( "true" )) : new RefreshEnabledHtml(),  
 
 			// the conditions for refresh disabled
-			(new RefreshHtmlHelper().getRefreshHtml( null )) 				: new RefreshDisabledHtml(), 
-			(new RefreshHtmlHelper().getRefreshHtml( "false" ))  			: new RefreshDisabledHtml(), 
-			(new RefreshHtmlHelper().getRefreshHtml( "non-truefalse" )) 	: new RefreshDisabledHtml(), 
-			(new RefreshHtmlHelper().getRefreshHtml( "" ))  				: new RefreshDisabledHtml(),
+			(new HtmlHelper().getRefreshHtml( null )) 				: new RefreshDisabledHtml(), 
+			(new HtmlHelper().getRefreshHtml( "false" ))  			: new RefreshDisabledHtml(), 
+			(new HtmlHelper().getRefreshHtml( "non-truefalse" )) 	: new RefreshDisabledHtml(), 
+			(new HtmlHelper().getRefreshHtml( "" ))  				: new RefreshDisabledHtml(),
 
 		]
 		

@@ -6,6 +6,12 @@ class HudsonLiveModel extends HudsonBaseModel {
 		super( true )
 	}
 	
+	HudsonLiveModel( boolean isLiveQueryEnabled ) {
+		super( isLiveQueryEnabled )
+	}
+	
+
+	
 
 	void populateModel() {
 		DynamicConfigurationInterface globalConfig =  HudsonBaseModel.getDynamicConfiguration()
@@ -15,8 +21,8 @@ class HudsonLiveModel extends HudsonBaseModel {
 			def urlWithPort = it.url	
 			String xmlMain, xmlBuildTimes 
 			try {
-				xmlMain 		= new URL("${urlWithPort}/jenkins/view/All/api/xml").text
-				xmlBuildTimes 	= new URL("${urlWithPort}/jenkins/view/All/cc.xml").text
+				xmlMain 		= this.isLiveQueryEnabled ? new URL("${urlWithPort}/jenkins/view/All/api/xml").text : ""
+				xmlBuildTimes 	= this.isLiveQueryEnabled ? new URL("${urlWithPort}/jenkins/view/All/cc.xml").text  : ""
 			} catch (Exception e) {
 				xmlMain = null
 				xmlBuildTimes = null
