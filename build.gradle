@@ -5,6 +5,9 @@ apply plugin: 'maven'
 
 defaultTasks 'clean', 'build'
 
+// include the test/sample config into the war
+sourceSets.main.resources.srcDir 'src/test/resources'
+
 repositories {
 	mavenCentral()
 }
@@ -13,5 +16,3 @@ dependencies {
 	groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.8.6'
 	testCompile group: 'junit', name: 'junit', version: '3.8.1'
 }
-
-
