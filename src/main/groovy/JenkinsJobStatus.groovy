@@ -29,6 +29,8 @@ class JenkinsJobStatus {
 		return Long.parseLong( ts )
 	}
 	
-
+	String toString() {
+		"Job: isBuilding: $isBuilding;   buildResult: $buildResult;   timeStamp: $timeStamp"
+	}
 	
 }

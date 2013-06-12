@@ -6,23 +6,31 @@ abstract class HudsonBaseModel  {
 	
 	List serverList // Constructed server objects with received XML
 	List ipAddressList
-	List pipelineJobs
+	Map pipelineSpecs
+	Map pipelineModel
 	
 	HudsonBaseModel() {
 		serverList = new ArrayList()
 		populateModel()
-		this.pipelineJobs = getPipelineJobs()  
+		this.pipelineSpecs = globalConfig.getPipelineSpecs()
+		this.pipelineModel = createPipelineModel()
 	}
 
 	abstract void populateModel()
 
-	def getPipelineJobs() {
-		def jobs = []
-		globalConfig.getPipelineJobURLs().each {
-			def xml = new URL( it + "/lastBuild/api/xml").text
-			jobs.add ( new JenkinsJobStatus( xml ) )
+	// Object model of pipeline job status
+	def createPipelineModel() {
+		def model = [:]
+		this.pipelineSpecs.each { key, value ->
+			// TODO: Handle the 'not found' condition
+			List jobUrl = value
+			jobUrl.each {
+				String urlString = it + "/lastBuild/api/xml" 
+				def xml = new URL( urlString ).text
+				model.put ( key, new JenkinsJobStatus( xml ))
+			}
 		}
-		return jobs
+		return model
 	}
 	
 	void parseIpString ( String ipString ) {

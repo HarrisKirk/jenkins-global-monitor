@@ -7,9 +7,25 @@ class HudsonTest extends GroovyTestCase {
 		assertEquals ( 18, globalConfig.getInstanceList().size()  )
 		assertEquals ( '114', globalConfig.getInstanceList()[0].ip )
 		assertTrue ( globalConfig.getRefreshIntervalSecs() >10 )
-		assertTrue ( globalConfig.getPipelineJobURLs().size() >1 )
+		assertFalse ( globalConfig.getPipelineSpecs() == null )
+		assertTrue ( globalConfig.getPipelineSpecs().size() == 2 )
 	}
 
+	void testPipelineModel() {
+		HudsonBaseModel hm = new HudsonMockModel()
+		hm.pipelineModel.each { key, value ->
+			def jobStatus = value
+			jobStatus.each {
+				println it
+				assertTrue( it.timeStamp > 0 )
+				if ( it.buildResult ) {
+					assert ( !it.isBuilding )
+				}
+					
+			}
+		}
+	}
+	
 	void testBasicModelAtrributes() {
 		[
 			new HudsonMockModel(),   
@@ -27,14 +43,7 @@ class HudsonTest extends GroovyTestCase {
 		assertTrue ( jjs.buildResult.equals('SUCCESS'))
 		assertTrue ( jjs.buildDate.toString().equals('Mon May 27 07:45:15 EDT 2013'))
 	}
-	
-	void testPipelineJobsOfModel() {
-		HudsonBaseModel hm = new HudsonMockModel()
-		assertTrue hm.pipelineJobs.size() == 3
-		hm.pipelineJobs.each {
-			assertTrue( it.timeStamp > 0 )
-		}
-	}
+
 	
 	void doTestBasicModelAtrributes( HudsonBaseModel hm ) {
 		// Useful for writing unit tests temporarily against
