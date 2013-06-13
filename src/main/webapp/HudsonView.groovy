@@ -90,7 +90,7 @@ html.html {
 								td pipelineName
 								def jobList = value
 								jobList.each {
-										td it.jenkinsHost
+										td it.displayName
 								}							
 							}
 						}

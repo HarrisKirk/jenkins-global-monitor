@@ -28,8 +28,8 @@ class HudsonTest extends GroovyTestCase {
 	
 	void testJenkinsJobStatus() {
 		def xml = JobTestConstants.XML_JOB_STATUS
-		JenkinsJobStatus jjs = new JenkinsJobStatus( "http://192.168.1.142:8080/jenkins/job/XYZ" , xml )
-		assertTrue ( jjs.jobName == 'XYZ')
+		JenkinsJobStatus jjs = new JenkinsJobStatus( "132:XYZ", "http://192.168.1.142:8080/jenkins/job/XYZ" , xml )
+		assertTrue ( jjs.jobName == '132:XYZ')
 		assertTrue ( jjs.jenkinsHost == '192.168.1.142')
 		assertTrue ( jjs.isBuilding == false)
 		assertTrue ( jjs.buildResult.equals('SUCCESS'))
