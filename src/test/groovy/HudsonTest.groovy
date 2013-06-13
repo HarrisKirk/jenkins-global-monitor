@@ -4,7 +4,7 @@ class HudsonTest extends GroovyTestCase {
 
 	void testDynamicConfig() {
 		DynamicConfigurationInterface globalConfig =  HudsonBaseModel.getDynamicConfiguration()
-		assertEquals ( 18, globalConfig.getInstanceList().size()  )
+		assertEquals ( 4, globalConfig.getInstanceList().size()  )
 		assertEquals ( '114', globalConfig.getInstanceList()[0].ip )
 		assertTrue ( globalConfig.getRefreshIntervalSecs() >10 )
 		assertFalse ( globalConfig.getPipelineSpecs() == null )

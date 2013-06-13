@@ -79,7 +79,27 @@ html.html {
 
                   } // tbody 
                 } // table
-                font (size:'3') { left 'jenkins-global-monitor ' + MonitorUtil.parseCVS( '$Name:  $') }
-                br {} 
-                font (size:'2') { right 'Compiled with groovyc; Built by Gradle; Powered by Tomcat and the Java 6 runtime' }        } // body
+				
+				br {}
+				
+				
+				table (summary:'binding', border:'1') {
+					tbody {
+						hbm.pipelineModel.each { pipelineName, value ->
+							tr {
+								td pipelineName
+								def jobList = value
+								jobList.each {
+										td it.jenkinsHost
+								}							
+							}
+						}
+					}
+				}
+				
+				
+				
+                br {}
+				font (size:'3') { left 'jenkins-global-monitor ' }
+		} // body
 }
