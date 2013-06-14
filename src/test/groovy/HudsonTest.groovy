@@ -33,15 +33,15 @@ class HudsonTest extends GroovyTestCase {
 //		String tdColor
 		
 		def testCases = [
-			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", '' )).tdColor) : HtmlHelper.STATUS_COLOR_DOWN,
-			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", '' )).linkText) : 'JOBA',
-			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", '' )).addlText) : '',
+			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", JobTestConstants.XML_EMPTY )).tdColor) : HtmlHelper.STATUS_COLOR_DOWN,
+			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", JobTestConstants.XML_EMPTY )).linkText) : 'JOBA',
+			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", JobTestConstants.XML_EMPTY )).addlText) : '',
 			
-//			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", JobTestConstants.XML_JOB_STATUS_SUCCESS )).tdColor) : HtmlHelper.STATUS_COLOR_OK,
-//			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", JobTestConstants.XML_JOB_STATUS_SUCCESS )).linkText) : 'JOBA',
+			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", JobTestConstants.XML_JOB_STATUS_SUCCESS )).tdColor) : HtmlHelper.STATUS_COLOR_OK,
+			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", JobTestConstants.XML_JOB_STATUS_SUCCESS )).linkText) : 'JOBA',
 //			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", JobTestConstants.XML_JOB_STATUS_SUCCESS )).addlText) : '8 hrs ago',
 			
-//			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", JobTestConstants.XML_JOB_STATUS_FAILURE )).tdColor) : HtmlHelper.STATUS_COLOR_FAILURES,
+			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", JobTestConstants.XML_JOB_STATUS_FAILURE )).tdColor) : HtmlHelper.STATUS_COLOR_FAILURES,
 //			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", JobTestConstants.XML_JOB_STATUS_FAILURE )).linkText) : 'JOBA',
 //			(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", JobTestConstants.XML_JOB_STATUS_FAILURE )).addlText) : '9 hrs ago',
 		]

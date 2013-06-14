@@ -32,7 +32,9 @@ static final String XML_JOB_STATUS_SUCCESS =
 	</changeSet>
 	</freeStyleBuild>
 	"""
-	
+
+	static final String XML_EMPTY = ''
+		
 	static final String XML_JOB_STATUS_FAILURE =
 	"""
 	<freeStyleBuild>
