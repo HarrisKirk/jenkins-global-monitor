@@ -33,7 +33,7 @@ class JobDisplayAttrib {
 	}
 	
 	String computeBuildText( long timeStamp ) {
-		
+		return new HudsonTimeComparator( timeStamp ).getDisplayTime()
 	}
 	
 	String toString() {

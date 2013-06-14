@@ -79,28 +79,30 @@ html.html {
                   } // tbody 
                 } // table
 				
+				
+				// Display any pipelines (related jobs run in sequence)
 				if ( hbm.pipelineModel.size() >0 ) {
 					br {}
-				
-							hbm.pipelineModel.each { pipelineName, value ->
-								def jobList = value							
-								out.println '<table border="2">'
-								out.println "<tr>"
-									String pipelineColor = 'Linen'
-									out.println '<td bgcolor="' + pipelineColor + '">'  + pipelineName + '</td>'
-									jobList.each {
-										
-										JobDisplayAttrib jda = new JobDisplayAttrib( it )
-										
-										out.println '<td bgcolor="' + jda.tdColor + '">' 
-										out.println '<a href="' + jda.linkUrl + '">' + jda.linkText + '</a>' + " " + jda.addlText
-										out.println '</td>'
-									}			
-								out.println "</tr>"
-								out.println '</table>'
-							}
+					hbm.pipelineModel.each { pipelineName, value ->
+						def jobList = value							
+						out.println '<table border="2">'
+						out.println "<tr>"
+							String pipelineColor = 'Linen'
+							out.println '<td bgcolor="' + pipelineColor + '">'  + pipelineName + '</td>'
+							jobList.each {
+								
+								JobDisplayAttrib jda = new JobDisplayAttrib( it )
+								
+								out.println '<td bgcolor="' + jda.tdColor + '">' 
+								out.println '<a href="' + jda.linkUrl + '">' + jda.linkText + '</a>' + " " + jda.addlText
+								out.println '</td>'
+							}			
+						out.println "</tr>"
+						out.println '</table>'
+					}
 				}
 				
+				br {}
 				font (size:'3') { left 'jenkins-global-monitor ' }
 		} // body
 }

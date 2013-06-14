@@ -17,6 +17,14 @@ public class HudsonTimeComparator {
 		jobDate = createGmtDate( jobTimeString + GMT_OFFSET )
 		currentDate = new Date()
 	}
+	HudsonTimeComparator( long timeStamp ) {
+		jobDate = new Date( timeStamp )
+		currentDate = new Date()
+	}
+	HudsonTimeComparator( long timeStamp, long currentTimeStamp ) {
+		jobDate = new Date( timeStamp )
+		this.currentDate = new Date( currentTimeStamp )
+	}
 	HudsonTimeComparator( String jobTimeString, String mockCurrentDate ) {
 		jobDate = 		createGmtDate( jobTimeString + GMT_OFFSET )
 		currentDate = 	createGmtDate( mockCurrentDate + GMT_OFFSET)
@@ -56,5 +64,9 @@ public class HudsonTimeComparator {
 		return displayString
 	}
 
+	String toString() {
+		"job Date: $jobDate;   current/ref Date: $currentDate"
+	}
+	
 }
 

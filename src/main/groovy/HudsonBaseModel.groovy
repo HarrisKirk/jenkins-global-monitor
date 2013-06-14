@@ -38,7 +38,7 @@ abstract class HudsonBaseModel  {
 				} catch (Exception e) {
 					xml = null
 				}
-				jobStats << new JenkinsJobStatus( it.displayName, urlString, xml )
+				jobStats << new JenkinsJobStatus( it.displayName, it.jobUrl, xml )
 			}
 			model.put ( key, jobStats )
 		}

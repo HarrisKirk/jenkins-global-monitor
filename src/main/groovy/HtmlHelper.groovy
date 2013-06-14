@@ -4,7 +4,7 @@ class HtmlHelper {
 	static final String STATUS_COLOR_DOWN = "Grey"
 	static final String STATUS_COLOR_FAILURES = "IndianRed"
 	static final String STATUS_COLOR_CAUTION = "Gold"
-	static final String STATUS_COLOR_BUILDING = "Blue"
+	static final String STATUS_COLOR_BUILDING = "LightBlue"
 	
 	def getRefreshHtml( String queryParameterValue ) {
 	
