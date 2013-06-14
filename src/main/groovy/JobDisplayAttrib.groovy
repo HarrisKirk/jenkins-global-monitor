@@ -7,9 +7,11 @@ class JobDisplayAttrib {
 	JobDisplayAttrib( JenkinsJobStatus jjs ) {
 		linkText = jjs.jobName
 		linkUrl = jjs.jobUrl
-		addlText = '8'
-		tdColor = 'YellowGreen'
+		addlText = ''
+		tdColor = HtmlHelper.STATUS_COLOR_DOWN
 	}
 	
-	
+	String toString() {
+		"linkText=$linkText;  linkUrl=$linkUrl;  addlText=$addlText;   tdColor=$tdColor"
+	}
 }
