@@ -31,14 +31,14 @@ abstract class HudsonBaseModel  {
 			List jobUrl = value
 			def jobStats = []
 			jobUrl.each {
-				String urlString = it + "/lastBuild/api/xml"
+				String urlString = it.jobUrl + "/lastBuild/api/xml"
 				def xml
 				try { 
 					xml = this.isLiveQueryEnabled ? new URL( urlString ).text : ""
 				} catch (Exception e) {
 					xml = null
 				}
-				jobStats << new JenkinsJobStatus( urlString, xml )
+				jobStats << new JenkinsJobStatus( it.displayName, it.jobUrl, xml )
 			}
 			model.put ( key, jobStats )
 		}

@@ -10,10 +10,9 @@ class JenkinsJobStatus {
 
 	Date buildDate	
 	
-	JenkinsJobStatus( String jobUrl, String xml ) {
+	JenkinsJobStatus( String jobName, String jobUrl, String xml ) {
 		this.jobUrl = jobUrl
-		int jobNameStart = jobUrl.lastIndexOf('/') + 1
-		this.jobName = jobUrl.substring( jobNameStart ) 
+		this.jobName = jobName 
 		this.jenkinsHost = new URL( jobUrl ).getHost() 
 		if ( xml ) {
 			this.isJenkinsJobFound = true
