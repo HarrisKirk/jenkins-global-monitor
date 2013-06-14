@@ -29,6 +29,7 @@ abstract class HudsonBaseModel  {
 		def model = [:]
 		this.pipelineSpecs.each { key, value ->
 			List jobUrl = value
+			def jobStats = []
 			jobUrl.each {
 				String urlString = it + "/lastBuild/api/xml"
 				def xml
@@ -37,8 +38,9 @@ abstract class HudsonBaseModel  {
 				} catch (Exception e) {
 					xml = null
 				}
-				model.put ( key, new JenkinsJobStatus( urlString, xml ))
+				jobStats << new JenkinsJobStatus( urlString, xml )
 			}
+			model.put ( key, jobStats )
 		}
 		return model
 	}
