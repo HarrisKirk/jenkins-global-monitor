@@ -40,13 +40,12 @@ html.html {
                                         th 'When'
                                 }
 
-
                                 hbm.serverList.each{ server ->
                                         tr (bgcolor:server.status.color) {
                         td {    
                            a href:"${server.url}", "${server.ip}" 
                         }
-                            td server.status.health
+                        td server.status.health
                         td server.description.replaceAll("<(.|\n)*?>", '')
 
                         if ( server.status.color.equals( HudsonServer.STATUS_COLOR_DOWN ) ) {
@@ -61,10 +60,10 @@ html.html {
                                           a href:"${problemJobs.getAt(i).url}" + "lastBuild/console", "${problemJobs.getAt(i).name}" 
                                         } // for
                                      } // if
-                                } // td
-                                td {    
+                               } // td
+                            td {    
                                    a href:"${server.status.mostRecentJob.url}", "${server.status.mostRecentJob.name}" 
-                                }
+                               }
 
 								if ( server.status.mostRecentJob.isBuilding() ) {
 									td { strong server.status.mostRecentJob.getRecentBuildMessage() }
@@ -80,26 +79,28 @@ html.html {
                   } // tbody 
                 } // table
 				
-				br {}
+				if ( hbm.pipelineModel.size() >0 ) {
+					br {}
 				
-				
-				table (summary:'binding', border:'1') {
-					tbody {
-						hbm.pipelineModel.each { pipelineName, value ->
-							tr {
-								td pipelineName
-								def jobList = value
-								jobList.each {
-										td it.displayName
-								}							
+							hbm.pipelineModel.each { pipelineName, value ->
+								def jobList = value							
+								out.println '<table border="2">'
+								out.println "<tr>"
+									String pipelineColor = 'Linen'
+									out.println '<td bgcolor="' + pipelineColor + '">'  + pipelineName + '</td>'
+									jobList.each {
+										
+										JobDisplayAttrib jda = new JobDisplayAttrib( it )
+										
+										out.println '<td bgcolor="' + jda.tdColor + '">' 
+										out.println '<a href="' + jda.linkUrl + '">' + jda.linkText + '</a>' + " " + jda.addlText
+										out.println '</td>'
+									}			
+								out.println "</tr>"
+								out.println '</table>'
 							}
-						}
-					}
 				}
 				
-				
-				
-                br {}
 				font (size:'3') { left 'jenkins-global-monitor ' }
 		} // body
 }
