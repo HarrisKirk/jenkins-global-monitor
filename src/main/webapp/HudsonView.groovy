@@ -29,7 +29,7 @@ html.html {
 				p (align:"LEFT") { a href:"${htmlHelper.href_url}", "${htmlHelper.href_string}"
 				}
 				
-                table (summary:'binding', border:'1') {
+                table (summary:'binding', border:'1', width:'90%') {
                         tbody {
                                 tr (bgcolor:'Linen') {
                                         th 'Jenkins IP'
@@ -85,7 +85,7 @@ html.html {
 					br {}
 					hbm.pipelineModel.each { pipelineName, value ->
 						def jobList = value							
-						out.println '<table border="2">'
+						out.println '<table border="2" width="90%">'
 						out.println "<tr>"
 							String pipelineColor = 'Linen'
 							out.println '<td bgcolor="' + pipelineColor + '">'  + pipelineName + '</td>'
