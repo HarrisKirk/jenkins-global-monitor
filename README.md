@@ -1,7 +1,7 @@
 jenkins-global-monitor
 ======================
 
-![Alt text](/path/to/img.jpg "Wall Monitor Page")
+![Alt text](/doc/screenshots/SomeReds.png  "Wall Monitor Page")
 
 Shows a color-coded status of a list of Jenkins servers.  Intended for a wall monitor.    
 It is a war file intended to be dropped into a web container.  Configuration of
