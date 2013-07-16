@@ -29,6 +29,9 @@ To deploy:
 ---------------------------------
 Copy jenkins-global-monitor.war into Tomcat/webapps folder
 
+---------------------------------
+To configure the list of Jenkins Servers:
+---------------------------------
 After deployment of the war, modify DynamicConfiguration.groovy with your Jenkins
 servers.   An example file is provided.
 
