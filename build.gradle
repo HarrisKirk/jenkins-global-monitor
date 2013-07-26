@@ -5,6 +5,8 @@ apply plugin: 'maven'
 
 defaultTasks 'clean', 'build'
 
+project.webapps = "C:/Tomcat6/webapps"
+
 // include the test/sample config into the war
 sourceSets.main.resources.srcDir 'src/test/resources'
 
@@ -15,4 +17,12 @@ repositories {
 dependencies {
 	groovy group: 'org.codehaus.groovy', name: 'groovy', version: '1.8.6'
 	testCompile group: 'junit', name: 'junit', version: '3.8.1'
+}
+
+task deploy (dependsOn: build) << {
+	def warFile = buildDir.name + '/libs/' + project.property('archivesBaseName') + '.war'
+	logger.lifecycle ""
+	logger.lifecycle "Deploying $warFile to $project.webapps..."
+	logger.lifecycle ""
+	ant.copy file:buildDir.name + '/libs/' + project.property('archivesBaseName') + '.war', toDir: project.webapps, overwrite:true, verbose:true
 }
