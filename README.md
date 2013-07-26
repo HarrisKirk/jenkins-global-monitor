@@ -27,7 +27,7 @@ gradle clean build
 ---------------------------------
 To deploy:
 ---------------------------------
-Copy jenkins-global-monitor.war into Tomcat/webapps folder
+gradle -Dtomcat.webapps=C:/MyTomcat/webapps  deploy
 
 ---------------------------------
 To configure the list of Jenkins Servers:

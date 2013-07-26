@@ -4,8 +4,7 @@ apply plugin: 'groovy'
 apply plugin: 'maven'
 
 defaultTasks 'clean', 'build'
-
-project.webapps = "C:/Tomcat6/webapps"
+project.webapps = System.getProperty('tomcat.webapps') ?: 'C:/Tomcat6/webapps'
 
 // include the test/sample config into the war
 sourceSets.main.resources.srcDir 'src/test/resources'
