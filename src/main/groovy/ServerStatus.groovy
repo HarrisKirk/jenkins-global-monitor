@@ -1,3 +1,7 @@
+/*
+ * Runtime attributes of a jenkins server use by the groovelet 
+ */
+
 class ServerStatus {
 	String color
 	String ip

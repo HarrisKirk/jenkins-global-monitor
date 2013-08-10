@@ -1,5 +1,8 @@
+/* 
+ * Description of an individual Jenkins server 
+ */
 class JenkinsInstanceSpecification {
-	String ip
+	String ip // ip or description
 	String url
 	
 	JenkinsInstanceSpecification( String ip, String url ) {
