@@ -1,3 +1,7 @@
+/*
+ * Determine the real time status of a Jenkins server based on the 2 Xml streams
+*/
+
 class HudsonServer {
 	static final String STATUS_COLOR_OK = "GreenYellow"
 	static final String STATUS_COLOR_DOWN = "Grey"
@@ -33,27 +37,15 @@ class HudsonServer {
 	}
 
 	ServerStatus determineServerStatus() {
-		if ( isAllBlueOrDisabledJobs() ) 
-			return new ServerStatus(HudsonServer.STATUS_COLOR_OK, 
-				this.ip, this.url, "OK", this.description, getMostRecentJob(), null ) 
-		else
-		if ( isAnyRedJob() )   
+		if ( isAnyRedJob() ) {
 			return new ServerStatus(HudsonServer.STATUS_COLOR_FAILURES, 
 				this.ip, this.url, "FAILURES", this.description, getMostRecentJob(), problemJobs ) 
-		else  
-			return new ServerStatus(HudsonServer.STATUS_COLOR_CAUTION, 
-				this.ip, this.url, "CAUTION", this.description, getMostRecentJob(), problemJobs ) 
-	}	
-
-	boolean isAllBlueOrDisabledJobs() {
-		boolean allBlues = true
-		jobs.values().each() {
-			if ( ! ['blue', 'blue_anime', 'disabled'].contains( it.jobColor ) ) allBlues = false 
+		} else {
+			return new ServerStatus(HudsonServer.STATUS_COLOR_OK,
+				this.ip, this.url, "OK", this.description, getMostRecentJob(), null )
 		}
-		return allBlues	
-	}		
+	}
 	
-
 	boolean isAnyRedJob() {
 		boolean reds = false
 		jobs.values().each() {
@@ -76,7 +68,7 @@ class HudsonServer {
 			HudsonJob job = new HudsonJob( it.name.text(), it.url.text(), it.color.text(), "", "" )
 			String jobName = it.name.text()
 			jobMap[jobName] = job 
-			if ( ! ['blue', 'blue_anime', 'disabled'].contains( it.color.text() ) ) {   // anything but blue or disabled is a problem
+			if ( ! ['blue', 'blue_anime', 'disabled', 'grey_anime'].contains( it.color.text() ) ) {   // anything but blue or disabled is a problem
 				problemJobs.add( job )
 			}
 		}

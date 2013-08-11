@@ -182,16 +182,7 @@ class HudsonTest extends GroovyTestCase {
 			HudsonServer hs = new HudsonServer( dummySpec, TestConstants.XML_BASE, TestConstants.XML_BUILD_TIMES )
 			assertEquals( "Incorrect Server Status", HudsonServer.STATUS_COLOR_OK, hs.status.color )
 		}
-		void testServerStatus_CAUTION() {
-			HudsonServer hs = new HudsonServer( dummySpec, TestConstants.XML_BASE_1ABORTED_1YELLOW, TestConstants.XML_BUILD_TIMES )
-			assertEquals( "Incorrect Server Status", HudsonServer.STATUS_COLOR_CAUTION, hs.status.color )
-			assertEquals( 2, hs.status.problemJobs.size )
-			
-			HudsonServer hs2 = new HudsonServer( dummySpec, TestConstants_2.XML_BASE_ALL_PENDING, TestConstants_2.XML_BUILD_TIMES_ALL_PENDING )
-			assertEquals( "Incorrect Server Status", HudsonServer.STATUS_COLOR_CAUTION, hs2.status.color )
-	
-		}
-		
+
 	
 		void testServerStatus_FAILURES() {
 			HudsonServer hs = new HudsonServer( dummySpec, TestConstants.XML_0DISABLED_3RED_BLUE, TestConstants.XML_BUILD_TIMES )
