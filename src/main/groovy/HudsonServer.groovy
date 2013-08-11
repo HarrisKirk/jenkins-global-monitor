@@ -6,7 +6,6 @@ class HudsonServer {
 	static final String STATUS_COLOR_OK = "GreenYellow"
 	static final String STATUS_COLOR_DOWN = "Grey"
 	static final String STATUS_COLOR_FAILURES = "IndianRed"
-	static final String STATUS_COLOR_CAUTION = "Gold"
   
     
 	String ip
