@@ -213,9 +213,10 @@ class HudsonTest extends GroovyTestCase {
 			assertEquals( expectedJobName, hs.status.mostRecentJob )
 		}
 	
-		void testMostRecentJobFound_CASE_Server_Building() {
-			HudsonServer hs = new HudsonServer( dummySpec, TestConstants_2.XML_BASE, TestConstants_2.XML_BUILD_TIMES )
-			assertEquals( "latest-demand", hs.status.mostRecentJob.name )
+		void testFirstBuildofJob() {
+			// Tests the condition of a first-time build of a jenkins job (where there is no entry in the build times xml)
+			HudsonServer hs = new HudsonServer( dummySpec, TestConstants_2.BASE_FIRST_JOB, TestConstants_2.BUILD_TIMES_FIRST_JOB )
+			assertEquals( "test-job", hs.status.mostRecentJob.name )
 			assertEquals( "Building now...", hs.status.mostRecentJob.getRecentBuildMessage() )
 		}
 	

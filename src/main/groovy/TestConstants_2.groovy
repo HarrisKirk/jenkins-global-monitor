@@ -24,4 +24,31 @@ static final String XML_BUILD_TIMES_ALL_PENDING =
 <Projects>
 </Projects>
 """
+
+static final String BASE_FIRST_JOB = """
+<allView>
+<job>
+<name>archivalTest</name>
+<url>
+http://192.168.1.107:9090/jenkins/job/archivalTest/
+</url>
+<color>blue</color>
+</job>
+<job>
+<name>test-job</name>
+<url>http://192.168.1.107:9090/jenkins/job/test-job/</url>
+<color>grey_anime</color>
+</job>
+<name>All</name>
+<url>http://192.168.1.107:9090/jenkins/</url>
+</allView>
+"""
+
+static final String BUILD_TIMES_FIRST_JOB = """
+<Projects>
+<Project activity="Sleeping" lastBuildTime="2013-08-17T19:40:30Z" webUrl="http://192.168.1.107:9090/jenkins/job/archivalTest/" lastBuildLabel="9" name="archivalTest" lastBuildStatus="Success"/>
+</Projects>
+"""
+
+ 
 }
