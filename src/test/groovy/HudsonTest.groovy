@@ -16,7 +16,6 @@ class HudsonTest extends GroovyTestCase {
 			hm.pipelineModel.each { key, value ->
 				def jobStatus = value
 				jobStatus.each {
-					println it
 					assertTrue( it.timeStamp > 0 )
 					if ( it.buildResult ) {
 						assert ( !it.isBuilding )
@@ -212,19 +211,6 @@ class HudsonTest extends GroovyTestCase {
 			HudsonServer hs = new HudsonServer( dummySpec, null, null )
 	
 			assertEquals( expectedJobName, hs.status.mostRecentJob )
-		}
-	
-		void testMostRecentJobFound_CASE_All_Jobs_Aborted() {
-			// Test case when a new hudson server is built.   All jobs are then "Pending" and
-			// the xml file from build history is empty.   In that case, all jobs will have
-			// empty string for lastBuildTime and activity.
-			// TODO: Its expected to fail on the next server re-installation
-			
-			HudsonServer hs = new HudsonServer( dummySpec, TestConstants_2.XML_BASE_ALL_PENDING, TestConstants_2.XML_BUILD_TIMES_ALL_PENDING )
-			def expectedLastBuildTime = ""
-			def expectedActivity = ""
-			assertEquals( expectedLastBuildTime, hs.status.mostRecentJob.lastBuildTime )
-			assertEquals( expectedActivity, hs.status.mostRecentJob.activity )
 		}
 	
 		void testMostRecentJobFound_CASE_Server_Building() {

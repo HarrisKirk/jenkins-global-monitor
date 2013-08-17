@@ -27,6 +27,7 @@ class HudsonServer {
 		boolean isValidXmlResponse = hudsonApiXml != null && !hudsonApiXml.equals("")
 		if ( isValidXmlResponse ) {
 			this.jobs = createJobMap ( hudsonApiXml, hudsonBuildTimesXml)
+			determineProblemJobs()
 			return determineServerStatus()
 		} else {
 			this.description = "(not available)"
@@ -36,7 +37,7 @@ class HudsonServer {
 	}
 
 	ServerStatus determineServerStatus() {
-		if ( isAnyRedJob() ) {
+		if ( problemJobs ) {
 			return new ServerStatus(HudsonServer.STATUS_COLOR_FAILURES, 
 				this.ip, this.url, "FAILURES", this.description, getMostRecentJob(), problemJobs ) 
 		} else {
@@ -45,31 +46,23 @@ class HudsonServer {
 		}
 	}
 	
-	boolean isAnyRedJob() {
-		boolean reds = false
-		jobs.values().each() {
-			if (it.jobColor.startsWith("red")) {
-				reds = true
+	void determineProblemJobs() {
+		this.jobs.values().each() {
+			if (it.jobColor.startsWith("red") || it.jobColor.startsWith("yellow") ) {
+				this.problemJobs.add( it )
 			} 
 		}
-		return reds	
 	}		
 		
 	def createJobMap( String hudsonApiXml, String hudsonBuildTimesXml ) {
 		def jobMap = [:]
-		// create map of jobs from api/xml
 		def hudson = new XmlParser().parseText( hudsonApiXml )
 		this.description = hudson.description.text()
 		
-		def allJobs = hudson.job
-
-		allJobs.each{
-			HudsonJob job = new HudsonJob( it.name.text(), it.url.text(), it.color.text(), "", "" )
+		hudson.job.each{
 			String jobName = it.name.text()
-			jobMap[jobName] = job 
-			if ( ! ['blue', 'blue_anime', 'disabled', 'grey_anime'].contains( it.color.text() ) ) {   // anything but blue or disabled is a problem
-				problemJobs.add( job )
-			}
+			def activity = it.color.text().equals( 'grey_anime') ? 'Building' : ''  // handle the special case of first build
+			jobMap[jobName] = new HudsonJob( it.name.text(), it.url.text(), it.color.text(), activity, "" ) 
 		}
 		// merge time information from hudsonBuildTimesXml		
 		def projects = new XmlParser().parseText( hudsonBuildTimesXml )
