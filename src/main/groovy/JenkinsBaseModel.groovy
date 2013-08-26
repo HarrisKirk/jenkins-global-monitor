@@ -1,4 +1,4 @@
-abstract class HudsonBaseModel  {
+abstract class JenkinsBaseModel  {
 
 	String displayName = "Shaw Systems Jenkins Server Farm"
 
@@ -10,11 +10,11 @@ abstract class HudsonBaseModel  {
 	Map pipelineModel
 	boolean isLiveQueryEnabled // if true, gather XML Api results.   If false, assume unreachable and merely display URL on page
 	
-	HudsonBaseModel() {
-		HudsonBaseModel( true )
+	JenkinsBaseModel() {
+		JenkinsBaseModel( true )
 	}
 	
-	HudsonBaseModel( boolean isLiveQueryEnabled ) {
+	JenkinsBaseModel( boolean isLiveQueryEnabled ) {
 		this.isLiveQueryEnabled = isLiveQueryEnabled
 		serverList = new ArrayList()
 		populateModel()
@@ -53,7 +53,7 @@ abstract class HudsonBaseModel  {
 		return serverList.size() 
 	}
 	
-	void add( HudsonServer hs ) { 
+	void add( JenkinsServer hs ) { 
 		serverList.add( hs ) 
 	}
 	

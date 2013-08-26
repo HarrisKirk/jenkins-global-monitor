@@ -2,7 +2,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
 
-public class HudsonTimeComparator {
+public class JenkinsTimeComparator {
 
 	Date jobDate 
 	Date currentDate
@@ -13,19 +13,19 @@ public class HudsonTimeComparator {
 	
 	public static final String JAVA_DATE_FORMAT = "yyyy-MM-dd HH:mm:ssZ";
 	
-	HudsonTimeComparator( String jobTimeString ) {
+	JenkinsTimeComparator( String jobTimeString ) {
 		jobDate = createGmtDate( jobTimeString + GMT_OFFSET )
 		currentDate = new Date()
 	}
-	HudsonTimeComparator( long timeStamp ) {
+	JenkinsTimeComparator( long timeStamp ) {
 		jobDate = new Date( timeStamp )
 		currentDate = new Date()
 	}
-	HudsonTimeComparator( long timeStamp, long currentTimeStamp ) {
+	JenkinsTimeComparator( long timeStamp, long currentTimeStamp ) {
 		jobDate = new Date( timeStamp )
 		this.currentDate = new Date( currentTimeStamp )
 	}
-	HudsonTimeComparator( String jobTimeString, String mockCurrentDate ) {
+	JenkinsTimeComparator( String jobTimeString, String mockCurrentDate ) {
 		jobDate = 		createGmtDate( jobTimeString + GMT_OFFSET )
 		currentDate = 	createGmtDate( mockCurrentDate + GMT_OFFSET)
 	}

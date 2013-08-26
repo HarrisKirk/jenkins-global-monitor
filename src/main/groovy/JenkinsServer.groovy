@@ -2,7 +2,7 @@
  * Determine the real time status of a Jenkins server based on the 2 Xml streams
 */
 
-class HudsonServer {
+class JenkinsServer {
 	static final String STATUS_COLOR_OK = "GreenYellow"
 	static final String STATUS_COLOR_DOWN = "Grey"
 	static final String STATUS_COLOR_FAILURES = "IndianRed"
@@ -17,7 +17,7 @@ class HudsonServer {
 	
 	ServerStatus status
         
-	HudsonServer (JenkinsInstanceSpecification spec, String hudsonApiXml, String hudsonBuildTimesXml ) {
+	JenkinsServer (JenkinsInstanceSpecification spec, String hudsonApiXml, String hudsonBuildTimesXml ) {
 		this.ip = spec.ip
 		this.url = "${spec.url}/jenkins/view/All"
 		this.status = processServerResponse( hudsonApiXml, hudsonBuildTimesXml )
@@ -31,17 +31,17 @@ class HudsonServer {
 			return determineServerStatus()
 		} else {
 			this.description = "(not available)"
-			return new ServerStatus(HudsonServer.STATUS_COLOR_DOWN, 
+			return new ServerStatus(JenkinsServer.STATUS_COLOR_DOWN, 
 				this.ip, this.url, "DOWN", this.description, null, null ) 
 		}		
 	}
 
 	ServerStatus determineServerStatus() {
 		if ( problemJobs ) {
-			return new ServerStatus(HudsonServer.STATUS_COLOR_FAILURES, 
+			return new ServerStatus(JenkinsServer.STATUS_COLOR_FAILURES, 
 				this.ip, this.url, "FAILURES", this.description, getMostRecentJob(), problemJobs ) 
 		} else {
-			return new ServerStatus(HudsonServer.STATUS_COLOR_OK,
+			return new ServerStatus(JenkinsServer.STATUS_COLOR_OK,
 				this.ip, this.url, "OK", this.description, getMostRecentJob(), null )
 		}
 	}
@@ -62,7 +62,7 @@ class HudsonServer {
 		hudson.job.each{
 			String jobName = it.name.text()
 			def activity = it.color.text().equals( 'grey_anime') ? 'Building' : ''  // handle the special case of first build
-			jobMap[jobName] = new HudsonJob( it.name.text(), it.url.text(), it.color.text(), activity, "" ) 
+			jobMap[jobName] = new JenkinsJob( it.name.text(), it.url.text(), it.color.text(), activity, "" ) 
 		}
 		// merge time information from hudsonBuildTimesXml		
 		def projects = new XmlParser().parseText( hudsonBuildTimesXml )
@@ -74,7 +74,7 @@ class HudsonServer {
 		return jobMap
 	}	
 		
-	HudsonJob getMostRecentJob() {
+	JenkinsJob getMostRecentJob() {
 		List buildingJobs = getJobsInBuildingState() // should be only 1 unless multi-executor Hudson server
 		if ( buildingJobs.size() > 0 ) {		
 			return buildingJobs.last() 

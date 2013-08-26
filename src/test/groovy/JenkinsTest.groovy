@@ -1,9 +1,9 @@
-class HudsonTest extends GroovyTestCase {
+class JenkinsTest extends GroovyTestCase {
 	
 		  public final JenkinsInstanceSpecification dummySpec = new JenkinsInstanceSpecification ("0.0.0.0","http://0.0.0.0:8080")
 	
 		void testDynamicConfig() {
-			DynamicConfigurationInterface globalConfig =  HudsonBaseModel.getDynamicConfiguration()
+			DynamicConfigurationInterface globalConfig =  JenkinsBaseModel.getDynamicConfiguration()
 			assertEquals ( 4, globalConfig.getInstanceList().size()  )
 			assertEquals ( '114', globalConfig.getInstanceList()[0].ip )
 			assertTrue ( globalConfig.getRefreshIntervalSecs() >10 )
@@ -12,7 +12,7 @@ class HudsonTest extends GroovyTestCase {
 		}
 	
 		void testPipelineModel() {
-			HudsonBaseModel hm = new HudsonMockModel()
+			JenkinsBaseModel hm = new JenkinsMockModel()
 			hm.pipelineModel.each { key, value ->
 				def jobStatus = value
 				jobStatus.each {
@@ -58,8 +58,8 @@ class HudsonTest extends GroovyTestCase {
 		
 		void testBasicModelAtrributes() {
 			[
-				new HudsonMockModel(),
-				//new HudsonLiveModel(),       // uncomment to also run the live tests in method below
+				new JenkinsMockModel(),
+				//new JenkinsLiveModel(),       // uncomment to also run the live tests in method below
 			].each { model ->
 				doTestBasicModelAtrributes( model )
 			}
@@ -68,7 +68,7 @@ class HudsonTest extends GroovyTestCase {
 	
 	
 		
-		void doTestBasicModelAtrributes( HudsonBaseModel hm ) {
+		void doTestBasicModelAtrributes( JenkinsBaseModel hm ) {
 			// Useful for writing unit tests temporarily against
 			// a live site.
 			assertTrue("No servers in model list", hm.size() >0)
@@ -109,7 +109,7 @@ class HudsonTest extends GroovyTestCase {
 	
 	
 		void testIpListFromProperty() {
-			HudsonBaseModel hm = new HudsonMockModel()
+			JenkinsBaseModel hm = new JenkinsMockModel()
 			assertTrue( hm.ipAddressList != null && hm.ipAddressList.size >1)
 		}
 	
@@ -131,7 +131,7 @@ class HudsonTest extends GroovyTestCase {
 	
 			testCases.each {
 				testCase, expectedResponse ->
-				HudsonTimeComparator comparator = new HudsonTimeComparator( testCase, MOCK_CURRENT_TIME )
+				JenkinsTimeComparator comparator = new JenkinsTimeComparator( testCase, MOCK_CURRENT_TIME )
 				assertEquals( "Test Case: ${testCase}",  testCases[ testCase ], comparator.getDisplayTime() )
 			}
 			
@@ -139,11 +139,11 @@ class HudsonTest extends GroovyTestCase {
 	
 		void testTimeComparisonsLong() {
 			long simulatedJobTime1 = new Date().getTime() - ( 130 * 1000 )
-			HudsonTimeComparator comparator1 = new HudsonTimeComparator( simulatedJobTime1 , new Date().getTime() )
+			JenkinsTimeComparator comparator1 = new JenkinsTimeComparator( simulatedJobTime1 , new Date().getTime() )
 			assertEquals( '   2 mins ago' , comparator1.getDisplayTime() )
 			
 			long simulatedJobTime2 = new Date().getTime() - ( 250 * 60 * 1000 )
-			HudsonTimeComparator comparator2 = new HudsonTimeComparator( simulatedJobTime2 , new Date().getTime() )
+			JenkinsTimeComparator comparator2 = new JenkinsTimeComparator( simulatedJobTime2 , new Date().getTime() )
 			assertEquals( '   4 hrs ago' , comparator2.getDisplayTime() )
 		}
 	
@@ -151,11 +151,11 @@ class HudsonTest extends GroovyTestCase {
 		void testReplace() {
 			String testString     = "2011-03-25T21:00:00Z"
 			String expectedString = "2011-03-25 21:00:00"
-			assertEquals ( HudsonTimeComparator.replaceTandZ( testString ), expectedString )
+			assertEquals ( JenkinsTimeComparator.replaceTandZ( testString ), expectedString )
 		}
 		
 		void testJobMapSize() {
-			HudsonServer hs = new HudsonServer( dummySpec, TestConstants.XML_BASE, TestConstants.XML_BUILD_TIMES )
+			JenkinsServer hs = new JenkinsServer( dummySpec, TestConstants.XML_BASE, TestConstants.XML_BUILD_TIMES )
 			assertEquals( "Incorrect # jobs ", hs.jobs.size(), 17 )
 		}
 		
@@ -170,22 +170,22 @@ class HudsonTest extends GroovyTestCase {
 	
 		void testServerStatus_DOWN() {
 			[
-				new HudsonServer( dummySpec, "", TestConstants.XML_BUILD_TIMES ),
-				new HudsonServer( dummySpec, null, TestConstants.XML_BUILD_TIMES )
+				new JenkinsServer( dummySpec, "", TestConstants.XML_BUILD_TIMES ),
+				new JenkinsServer( dummySpec, null, TestConstants.XML_BUILD_TIMES )
 			].each {
-				assertEquals( "Incorrect Server Status", HudsonServer.STATUS_COLOR_DOWN, it.status.color )
+				assertEquals( "Incorrect Server Status", JenkinsServer.STATUS_COLOR_DOWN, it.status.color )
 			}
 		}
 		
 		void testServerStatus_OK() {
-			HudsonServer hs = new HudsonServer( dummySpec, TestConstants.XML_BASE, TestConstants.XML_BUILD_TIMES )
-			assertEquals( "Incorrect Server Status", HudsonServer.STATUS_COLOR_OK, hs.status.color )
+			JenkinsServer hs = new JenkinsServer( dummySpec, TestConstants.XML_BASE, TestConstants.XML_BUILD_TIMES )
+			assertEquals( "Incorrect Server Status", JenkinsServer.STATUS_COLOR_OK, hs.status.color )
 		}
 
 	
 		void testServerStatus_FAILURES() {
-			HudsonServer hs = new HudsonServer( dummySpec, TestConstants.XML_0DISABLED_3RED_BLUE, TestConstants.XML_BUILD_TIMES )
-			assertEquals( "Incorrect Server Status", HudsonServer.STATUS_COLOR_FAILURES, hs.status.color )
+			JenkinsServer hs = new JenkinsServer( dummySpec, TestConstants.XML_0DISABLED_3RED_BLUE, TestConstants.XML_BUILD_TIMES )
+			assertEquals( "Incorrect Server Status", JenkinsServer.STATUS_COLOR_FAILURES, hs.status.color )
 			assertEquals( 3, hs.status.problemJobs.size )
 		}
 	
@@ -193,14 +193,14 @@ class HudsonTest extends GroovyTestCase {
 	// Test the most recent activity conditions =============================
 	//
 	
-	// Test the HudsonJob constructors
-		void testHudsonJobCtors() {
-			HudsonJob job = new HudsonJob( 'latest-demand', 'http...', 'blue', 'Building', '2011-04-10T01:01:19Z' )
+	// Test the JenkinsJob constructors
+		void testJenkinsJobCtors() {
+			JenkinsJob job = new JenkinsJob( 'latest-demand', 'http...', 'blue', 'Building', '2011-04-10T01:01:19Z' )
 			
 			assertTrue( job.isBuilding() )
 			assertEquals( "Building now...", job.getRecentBuildMessage() )
 			
-			HudsonJob job2 = new HudsonJob( 'latest-demand', 'http...', 'blue', 'Sleeping', '2011-04-10T01:01:19Z' )
+			JenkinsJob job2 = new JenkinsJob( 'latest-demand', 'http...', 'blue', 'Sleeping', '2011-04-10T01:01:19Z' )
 			assertFalse( job2.isBuilding() )
 			
 		}
@@ -208,20 +208,20 @@ class HudsonTest extends GroovyTestCase {
 		
 		void testMostRecentJobFound_CASE_Server_Down() {
 			def expectedJobName = null
-			HudsonServer hs = new HudsonServer( dummySpec, null, null )
+			JenkinsServer hs = new JenkinsServer( dummySpec, null, null )
 	
 			assertEquals( expectedJobName, hs.status.mostRecentJob )
 		}
 	
 		void testFirstBuildofJob() {
 			// Tests the condition of a first-time build of a jenkins job (where there is no entry in the build times xml)
-			HudsonServer hs = new HudsonServer( dummySpec, TestConstants_2.BASE_FIRST_JOB, TestConstants_2.BUILD_TIMES_FIRST_JOB )
+			JenkinsServer hs = new JenkinsServer( dummySpec, TestConstants_2.BASE_FIRST_JOB, TestConstants_2.BUILD_TIMES_FIRST_JOB )
 			assertEquals( "test-job", hs.status.mostRecentJob.name )
 			assertEquals( "Building now...", hs.status.mostRecentJob.getRecentBuildMessage() )
 		}
 	
 		void test2BuildingJobs_CASE_Multiple_Executors() {
-			HudsonServer hs = new HudsonServer( dummySpec, TestConstants.XML_2_BUILDING_BASE, TestConstants.XML_2_BUILDING_BUILD_TIMES )
+			JenkinsServer hs = new JenkinsServer( dummySpec, TestConstants.XML_2_BUILDING_BASE, TestConstants.XML_2_BUILDING_BUILD_TIMES )
 			assertEquals( "The 2 jobs in Building state were not detected", hs.getJobsInBuildingState().size, 2);
 			assertEquals( "zxB", hs.status.mostRecentJob.name )
 			assertEquals( true, hs.status.mostRecentJob.isBuilding() )

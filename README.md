@@ -41,6 +41,6 @@ To Use:
 Example: http://192.168.1.107:9090/jenkins-global-monitor
 
 // Show only the Servers without polling each one (useful if many are slow to respond)
-Example: http://192.168.1.107:9090/jenkins-global-monitor/HudsonView.groovy?jenkins_disabled=true
+Example: http://192.168.1.107:9090/jenkins-global-monitor/JenkinsView.groovy?jenkins_disabled=true
 
  

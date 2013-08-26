@@ -8,12 +8,12 @@ class ServerStatus {
 	String url
 	String health
 	String message
-	HudsonJob mostRecentJob
+	JenkinsJob mostRecentJob
 	List problemJobs
 	
 	ServerStatus( 
 		String color, String ip, String url, String health, String message, 
-		HudsonJob mostRecentJob, List problemJobs ) {
+		JenkinsJob mostRecentJob, List problemJobs ) {
 		
 		this.color = color
 		this.ip = ip

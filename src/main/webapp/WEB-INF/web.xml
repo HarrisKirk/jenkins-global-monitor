@@ -7,10 +7,10 @@
 <web-app>
 
     <display-name>
-      Hudson Master Build Monitor  
+      Jenkins Master Build Monitor  
     </display-name>
     <description>
-      Hudson Master Build Monitor  
+      Jenkins Master Build Monitor  
     </description>
 
     <servlet>
@@ -24,7 +24,7 @@
     </servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>/HudsonView.groovy</welcome-file>
+		<welcome-file>/JenkinsView.groovy</welcome-file>
 	</welcome-file-list>
 	
 </web-app>

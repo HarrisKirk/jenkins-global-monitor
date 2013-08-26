@@ -1,7 +1,7 @@
 import java.text.SimpleDateFormat
 
 boolean isLiveJenkinsEnabled = new HtmlHelper().getTrueIfExplicitlySet(request.getParameter("jenkins_disabled")) ? false : true
-HudsonBaseModel hbm = new HudsonLiveModel( isLiveJenkinsEnabled )
+JenkinsBaseModel hbm = new JenkinsLiveModel( isLiveJenkinsEnabled )
 def htmlHelper = new HtmlHelper().getRefreshHtml(request.getParameter("auto_refresh"))
 
 html.html {
@@ -48,7 +48,7 @@ html.html {
                         td server.status.health
                         td server.description.replaceAll("<(.|\n)*?>", '')
 
-                        if ( server.status.color.equals( HudsonServer.STATUS_COLOR_DOWN ) ) {
+                        if ( server.status.color.equals( JenkinsServer.STATUS_COLOR_DOWN ) ) {
                                 td ''
                                 td ''
                                 td ''

@@ -1,12 +1,12 @@
-class HudsonLiveModel extends HudsonBaseModel {
+class JenkinsLiveModel extends JenkinsBaseModel {
 
 	String displayName = "Shaw Systems Jenkins Server Farm "
 
-	HudsonLiveModel() {
+	JenkinsLiveModel() {
 		super( true )
 	}
 	
-	HudsonLiveModel( boolean isLiveQueryEnabled ) {
+	JenkinsLiveModel( boolean isLiveQueryEnabled ) {
 		super( isLiveQueryEnabled )
 	}
 	
@@ -14,7 +14,7 @@ class HudsonLiveModel extends HudsonBaseModel {
 	
 
 	void populateModel() {
-		DynamicConfigurationInterface globalConfig =  HudsonBaseModel.getDynamicConfiguration()
+		DynamicConfigurationInterface globalConfig =  JenkinsBaseModel.getDynamicConfiguration()
 		this.ipAddressList = globalConfig.getInstanceList()
 
 		this.ipAddressList.each {
@@ -27,7 +27,7 @@ class HudsonLiveModel extends HudsonBaseModel {
 				xmlMain = null
 				xmlBuildTimes = null
 			} 
-			add( new HudsonServer( it, xmlMain, xmlBuildTimes ) )
+			add( new JenkinsServer( it, xmlMain, xmlBuildTimes ) )
 		}
 	}
 	 

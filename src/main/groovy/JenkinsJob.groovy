@@ -1,11 +1,11 @@
-class HudsonJob {
+class JenkinsJob {
 	String name
 	String url
 	String jobColor
 	String activity
 	String lastBuildTime
 
-	HudsonJob( String name, String url, String jobColor, String activity, String lastBuildTime) {
+	JenkinsJob( String name, String url, String jobColor, String activity, String lastBuildTime) {
 		this.name = name
 		this.url = url
 		this.jobColor = jobColor
@@ -16,7 +16,7 @@ class HudsonJob {
 	String getRecentBuildMessage() {
 		return isBuilding() ? 
 			"Building now..." : 
-			new HudsonTimeComparator( lastBuildTime ).getDisplayTime()	
+			new JenkinsTimeComparator( lastBuildTime ).getDisplayTime()	
 	}
 		
 	String toString() {

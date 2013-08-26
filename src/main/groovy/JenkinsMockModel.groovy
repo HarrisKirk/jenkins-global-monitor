@@ -1,14 +1,14 @@
-class HudsonMockModel extends HudsonBaseModel {
+class JenkinsMockModel extends JenkinsBaseModel {
 
 	String displayName = "Shaw Systems Hudson Server Farm (Test Data)"
 
 	// TODO: Build out this mock server to allow easy simulation of test conditions
 
-	HudsonMockModel() {
+	JenkinsMockModel() {
 		super( true )
 	}
 	
-	HudsonMockModel( boolean isLiveQueryEnabled ) {
+	JenkinsMockModel( boolean isLiveQueryEnabled ) {
 		super( isLiveQueryEnabled )
 	}
 	
@@ -21,7 +21,7 @@ class HudsonMockModel extends HudsonBaseModel {
 		new JenkinsInstanceSpecification('147','http://192.168.1.147:8080') 
 		]
 		this.ipAddressList.each {
-			add( new HudsonServer( it, TestConstants.XML_BASE, TestConstants.XML_BUILD_TIMES ) )
+			add( new JenkinsServer( it, TestConstants.XML_BASE, TestConstants.XML_BUILD_TIMES ) )
 		}
 	}
 	
