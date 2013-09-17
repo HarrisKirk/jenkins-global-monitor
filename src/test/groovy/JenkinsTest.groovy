@@ -4,7 +4,7 @@ class JenkinsTest extends GroovyTestCase {
 	
 		void testDynamicConfig() {
 			DynamicConfigurationInterface globalConfig =  JenkinsBaseModel.getDynamicConfiguration()
-			assertEquals ( 4, globalConfig.getInstanceList().size()  )
+			assertEquals ( 3, globalConfig.getInstanceList().size()  )
 			assertEquals ( '114', globalConfig.getInstanceList()[0].ip )
 			assertTrue ( globalConfig.getRefreshIntervalSecs() >10 )
 			assertFalse ( globalConfig.getPipelineSpecs() == null )
@@ -23,11 +23,6 @@ class JenkinsTest extends GroovyTestCase {
 						
 				}
 			}
-		}
-		
-		void testCustomerLogo() {
-			assertTrue JenkinsLiveModel.hasCustomerLogo( 'customer-logo.jpeg')
-			assertFalse JenkinsLiveModel.hasCustomerLogo('does-not-exist.jpeg')
 		}
 		
 		void testJobDisplayAttrib() {

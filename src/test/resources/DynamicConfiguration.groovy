@@ -3,13 +3,17 @@ public class DynamicConfiguration implements DynamicConfigurationInterface {
 	public def getInstanceList() {
 		[
 			new JenkinsInstanceSpecification( '114', "http://192.168.1.114:8080" ),
-			new JenkinsInstanceSpecification( '55', "http://192.168.1.55:8080" ),
 			new JenkinsInstanceSpecification( '139', "http://192.168.1.139:8080" ),
 			new JenkinsInstanceSpecification( '63', "http://192.168.1.63:8080" ),
 		]
 	}
+	
 	public def getRefreshIntervalSecs() {
 		return 20
+	}
+	
+	public def getCustomerImage() {
+		return ""   // return empty string or null if no image desired - otherwise myimage.jpeg 
 	}
 	
 	public def getPipelineSpecs() {

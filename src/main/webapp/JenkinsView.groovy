@@ -16,9 +16,9 @@ html.html {
                                         img (src:"jenkins-butler.jpeg", width:'70', height:'70', align:'bottom')
                                 }
 								
-								if ( JenkinsLiveModel.hasCustomerLogo( 'customer-logo.jpeg') ) {
+								if ( JenkinsBaseModel.globalConfig.getCustomerImage() ) {
 									th {
-											img (src:"customer-logo.jpeg", width:'70', height:'70', align:'bottom')
+											img (src:JenkinsBaseModel.globalConfig.getCustomerImage(), width:'70', height:'70', align:'bottom')
 									}
 								}
 								th { '  ' }
