@@ -35,6 +35,12 @@ After deployment of the war, modify DynamicConfiguration.groovy with your Jenkin
 servers.   An example file is provided.   You may need to restart the web server.
 
 ---------------------------------
+To configure the customer logo
+---------------------------------
+Modify DynamicConfiguration.groovy with the name of your custom image file.
+Copy the image file into the webapp folder.
+
+---------------------------------
 To Use:
 ---------------------------------
 // Default Page
