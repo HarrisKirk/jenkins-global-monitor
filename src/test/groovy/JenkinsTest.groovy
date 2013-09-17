@@ -25,6 +25,11 @@ class JenkinsTest extends GroovyTestCase {
 			}
 		}
 		
+		void testCustomerLogo() {
+			assertTrue JenkinsLiveModel.hasCustomerLogo( 'customer-logo.jpeg')
+			assertFalse JenkinsLiveModel.hasCustomerLogo('does-not-exist.jpeg')
+		}
+		
 		void testJobDisplayAttrib() {
 			def testCases = [
 				(new JobDisplayAttrib ( new JenkinsJobStatus( "JOBA", "http://...", JobTestConstants.XML_EMPTY )).tdColor) : HtmlHelper.STATUS_COLOR_DOWN,

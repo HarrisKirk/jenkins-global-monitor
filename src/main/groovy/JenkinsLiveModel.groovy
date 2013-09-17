@@ -30,6 +30,11 @@ class JenkinsLiveModel extends JenkinsBaseModel {
 			add( new JenkinsServer( it, xmlMain, xmlBuildTimes ) )
 		}
 	}
+	
+	static boolean hasCustomerLogo( String imageName ) {
+		def customImageFile = getClass().getResource("/${imageName}")  
+		return customImageFile 
+	}	
 	 
 }
 

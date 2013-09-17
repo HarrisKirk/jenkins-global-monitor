@@ -15,14 +15,17 @@ html.html {
                                 th {
                                         img (src:"jenkins-butler.jpeg", width:'70', height:'70', align:'bottom')
                                 }
-                                th {
-                                        img (src:"blank.png", width:'70', height:'70', align:'bottom')
-                                }
-                                th { '  ' }
-                                th {
-                                        font (size:'10') { right new SimpleDateFormat("EEEE hh:mm:ss a").format(new Date()) } 
-                                }
-
+								
+								if ( JenkinsLiveModel.hasCustomerLogo( 'customer-logo.jpeg') ) {
+									th {
+											img (src:"customer-logo.jpeg", width:'70', height:'70', align:'bottom')
+									}
+								}
+								th { '  ' }
+								th {
+										font (size:'10') { right new SimpleDateFormat("EEEE hh:mm:ss a").format(new Date()) } 
+								}
+								
                         }
                 }
 
