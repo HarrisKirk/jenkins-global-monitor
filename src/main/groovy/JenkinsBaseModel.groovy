@@ -34,7 +34,7 @@ abstract class JenkinsBaseModel  {
 				String urlString = it.jobUrl + "/lastBuild/api/xml"
 				def xml
 				try { 
-					xml = this.isLiveQueryEnabled ? new URL( urlString ).text : ""
+					xml = this.isLiveQueryEnabled ? getJenkinsXml( urlString ) : ""
 				} catch (Exception e) {
 					xml = null
 				}
@@ -69,6 +69,23 @@ abstract class JenkinsBaseModel  {
 			globalConfig = clazz.newInstance();
 		}
 		return globalConfig
+	}
+	
+	
+	public static String getJenkinsXml( def jenkinsUrl ) {
+		URLConnection yc = new URL( jenkinsUrl ).openConnection();
+		yc.setReadTimeout( 10 * 1000 )
+		BufferedReader br
+		try {
+			br = new BufferedReader(new InputStreamReader( yc.getInputStream()) );
+		} catch (Exception e) {
+		  return ""
+		}
+		StringBuffer sb = new StringBuffer();
+		String inputLine
+		while ((inputLine = br.readLine()) != null) sb.append ( inputLine )
+		br.close();
+		sb.toString()
 	}
 	 
 }

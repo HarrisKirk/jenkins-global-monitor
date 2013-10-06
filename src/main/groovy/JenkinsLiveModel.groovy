@@ -21,8 +21,8 @@ class JenkinsLiveModel extends JenkinsBaseModel {
 			def urlWithPort = it.url	
 			String xmlMain, xmlBuildTimes 
 			try {
-				xmlMain 		= this.isLiveQueryEnabled ? new URL("${urlWithPort}/jenkins/view/All/api/xml").text : ""
-				xmlBuildTimes 	= this.isLiveQueryEnabled ? new URL("${urlWithPort}/jenkins/view/All/cc.xml").text  : ""
+				xmlMain 		= this.isLiveQueryEnabled ? getJenkinsXml( "${urlWithPort}/jenkins/view/All/api/xml" ) : ""
+				xmlBuildTimes 	= this.isLiveQueryEnabled ? getJenkinsXml( "${urlWithPort}/jenkins/view/All/cc.xml" ) : ""
 			} catch (Exception e) {
 				xmlMain = null
 				xmlBuildTimes = null
@@ -36,6 +36,8 @@ class JenkinsLiveModel extends JenkinsBaseModel {
 		return customImageFile 
 	}	
 	 
+
+	
 }
 
 
