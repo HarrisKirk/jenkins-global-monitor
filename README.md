@@ -40,7 +40,6 @@ To configure the customer logo
 Modify DynamicConfiguration.groovy with the name of your custom image file.
 Copy the image file into the webapp folder.
 
-
 ---------------------------------
 To Use:
 ---------------------------------
