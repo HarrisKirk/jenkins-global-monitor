@@ -73,14 +73,6 @@ class JenkinsXmlTest extends GroovyTestCase {
 //
 // Test the most recent activity conditions =============================
 //
-	
-		void testMostRecentJobFound_CASE_Server_Down() {
-			def expectedJobName = null
-			JenkinsServer hs = new JenkinsServer( dummySpec, null, null )
-	
-			assertEquals( expectedJobName, hs.status.mostRecentJob )
-		}
-	
 		void testFirstBuildofJob() {
 			// Tests the condition of a first-time build of a jenkins job (where there is no entry in the build times xml)
 			JenkinsServer hs = new JenkinsServer( dummySpec, TestConstants_2.BASE_FIRST_JOB, TestConstants_2.BUILD_TIMES_FIRST_JOB )
