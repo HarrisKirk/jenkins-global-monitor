@@ -1,12 +1,7 @@
 class JenkinsXmlTest extends GroovyTestCase {
 
 	public final JenkinsInstanceSpecification dummySpec = new JenkinsInstanceSpecification ("0.0.0.0","http://0.0.0.0:8080")
-	
-/*
- * TODO: Refactor to ONLY test the reading of the xml files. 
- */
 		
-		// ?????		
 		void testJenkinsJobStatus() {
 			def xml = JobTestConstants.XML_JOB_STATUS_SUCCESS
 			JenkinsJobStatus jjs = new JenkinsJobStatus( "132:XYZ", "http://192.168.1.142:8080/jenkins/job/XYZ" , xml )
@@ -17,35 +12,6 @@ class JenkinsXmlTest extends GroovyTestCase {
 			assertTrue ( jjs.buildDate.toString().equals('Mon May 27 07:45:15 EDT 2013'))
 		}
 		
-		void testBasicModelAtrributes() {
-			[
-				new JenkinsMockModel(),
-				//new JenkinsLiveModel(),       // uncomment to also run the live tests in method below
-			].each { model ->
-				doTestBasicModelAtrributes( model )
-			}
-				
-		}
-	
-	
-		// Remove - not unit tests
-		void doTestBasicModelAtrributes( JenkinsBaseModel hm ) {
-			// Useful for writing unit tests temporarily against
-			// a live site.
-			assertTrue("No servers in model list", hm.size() >0)
-			hm.serverList.each{
-				assertFalse( "".equals(it.ip) )
-				assertTrue("Model: ${hm.displayName}: No jobs on server ${it.ip}", it.jobs.size() >0)
-				it.jobs.each{ key, value ->
-					assertTrue( TestConstants.HUDSON_JOB_COLOR_LIST.contains(value.jobColor) )
-				}
-				//assertEquals( "The 2 jobs in Building state were not detected", 2, it.getJobsInBuildingState().size);
-				//assertEquals(  hs.status.mostRecentJob.name, "zxB" )
-				//assertEquals( hs.status.mostRecentJob.isBuilding(), true )
-				
-			}
-		}
-
 //
 // Test the basic server health conditions =============================
 //

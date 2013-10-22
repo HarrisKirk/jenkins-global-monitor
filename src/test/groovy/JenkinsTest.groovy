@@ -31,11 +31,6 @@ class JenkinsTest extends GroovyTestCase {
 	
 		}
 	
-		void testIpListFromProperty() {
-			JenkinsBaseModel hm = new JenkinsMockModel()
-			assertTrue( hm.ipAddressList != null && hm.ipAddressList.size >1)
-		}
-
 		void testTimeComparisons() {
 			final String MOCK_CURRENT_TIME = "2011-03-27T18:00:00Z"  // 2 PM EDT (daylight savings)
 	
