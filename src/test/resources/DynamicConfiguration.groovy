@@ -9,7 +9,7 @@ public class DynamicConfiguration implements DynamicConfigurationInterface {
 	}
 	
 	public def getRefreshIntervalSecs() {
-		return 20
+		return 60
 	}
 	
 	public def getCustomerImage() {
