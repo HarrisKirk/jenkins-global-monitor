@@ -13,6 +13,9 @@ Configuration of Jenkins servers to monitor is a groovy source file compiled on 
 Currently,
 the web page refresh rate is configurable.
 
+---------------------------------
+Color key
+---------------------------------
 RED: The server has a failed job
 GREEN: No failed jobs
 GREY: The server cannot be reached.

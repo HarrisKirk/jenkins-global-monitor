@@ -1,3 +1,8 @@
+/*
+   Build the jenkins-global-monitor war file
+*/
+
+
 apply plugin: 'war'
 apply plugin: 'java'
 apply plugin: 'groovy'
@@ -25,3 +30,5 @@ task deploy (dependsOn: build) << {
 	logger.lifecycle ""
 	ant.copy file:buildDir.name + '/libs/' + project.property('archivesBaseName') + '.war', toDir: project.webapps, overwrite:true, verbose:true
 }
+
+
