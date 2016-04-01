@@ -2,7 +2,7 @@ public class DynamicConfiguration implements DynamicConfigurationInterface {
 	
 	public def getInstanceList() {
 		[
-			new JenkinsInstanceSpecification( '111', "http://ci.zikula.org/" ),
+			new JenkinsInstanceSpecification( 'zikula', "http://ci.zikula.org" ),
 		]
 	}
 	
